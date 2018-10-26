@@ -1,0 +1,10 @@
+<h3> I'm in create rn </h3>
+<p> <%= @n %> </p>
+<p> <%= @dex %> </p>
+<% params.each do |c|%>
+<p> this is: <%= c %> </p>
+<% end %>
+
+wuttttt
+<%= params.require(:pokemon).permit(:name) %>
+<%= params.require(:pokemon).permit(:ndex) %>

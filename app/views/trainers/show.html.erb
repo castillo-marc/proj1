@@ -1,3 +1,19 @@
 <h3>Trainer</h3>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
+<% if @trainer == current_trainer %>
+<%= button_to "Create New Pokemon!", new_path(), :class => "button medium", :method => :get %>
+
+<% end %>
+<p>Owned Pokemon: </p>
+<% Pokemon.all.each do |p| %>
+  <% if p.trainer_id == @trainer.id %>
+    <% if p.ndex %>
+      <%= image_tag("pokemon/#{p.ndex}.png", alt: "pokemon") %>
+    <% end %>
+    <p> Pokemon Name: <%= p.name %> </p>
+    <p> Pokemon Level: <%= p.level %> </p>
+    <p> Pokemon Health: <%= p.health %> </p>
+    <%= button_to "Damage!", damage_path(id: p, trainer: @trainer), :class => "button medium", :method => :patch %>
+  <% end %>
+<% end %>
